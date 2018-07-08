@@ -12,34 +12,32 @@ import SwiftyJSON
 import AlamofireImage
 import Alamofire
 
+
 class InformationPageViewController: UIViewController {
     
     var counter:Int = 0
+    
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var caloriesLabel: UILabel!
-    
-    var caloriesAmount:Double?
     @IBOutlet weak var fatLabel: UILabel!
-    var fatAmount:Double?
     @IBOutlet weak var satFatLabel: UILabel!
-    var satFatAmount:Double?
     @IBOutlet weak var sodiumLabel: UILabel!
-    var SodiumAmount:Double?
     @IBOutlet weak var sugarLabel: UILabel!
-    var sugarAmount:Double?
     @IBOutlet weak var carbsLabel: UILabel!
-    var carbsAmount:Double?
-    
     @IBOutlet weak var proteinLabel: UILabel!
-    var proteinAmount:Double?
     
+    
+    var caloriesAmount:Double = 0.0
+    var fatAmount:Double = 0.0
+    var satFatAmount:Double = 0.0
+    var SodiumAmount:Double = 0.0
+    var sugarAmount:Double = 0.0
+    var carbsAmount:Double = 0.0
+    var proteinAmount:Double = 0.0
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var continueButton: UIButton!
     
-    
-    
-    var jsonData:JSON?
     
     var barcode:String? {
         didSet{
@@ -103,38 +101,42 @@ class InformationPageViewController: UIViewController {
     
     
     @IBAction func continueButton(_ sender: Any) {
-
-            performSegue(withIdentifier: "toScale", sender: self)
+        
+        performSegue(withIdentifier: "toScale", sender: self)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //print("segue was called")
-            let destination = segue.destination as? SaveHealthDataViewController
-            
-            destination?.weight = self.getDigits((self.foodItem?.weight)!)
-            destination?.calories = self.caloriesAmount!
-            destination?.fat = self.fatAmount!
-            destination?.satFat = self.satFatAmount!
-            destination?.sodium = self.SodiumAmount!
-            destination?.sugar = sugarAmount!
-            destination?.carbs = carbsAmount!
-            destination?.protein = proteinAmount!
-            
-            
-        }
+        let destination = segue.destination as? SaveHealthDataViewController
         
+        destination?.weight = self.getDigits(digitizedString: (self.foodItem?.weight)!)
+        destination?.calories = self.caloriesAmount
+        destination?.fat = self.fatAmount
+        destination?.satFat = self.satFatAmount
+        destination?.sodium = self.SodiumAmount
+        destination?.sugar = sugarAmount
+        destination?.carbs = carbsAmount
+        destination?.protein = proteinAmount
+        
+        
+    }
+    
     
     
     
     
     //TODO: Fix to get only number from string not remove last digit
-    func getDigits(_ str:String) -> Double{
-        if str.isEmpty {return 0.0}
-        var newString = str
-        newString.removeLast()
-        counter+=1
-        return Double(newString)!
+    func getDigits(digitizedString : String) -> Double{
+        let digitizedString = digitizedString.components(separatedBy: CharacterSet.decimalDigits).joined()
+        print("digitized String: \(digitizedString)")
+        
+        guard let returnedDigit = Double(digitizedString) else {
+            print("The digitized string is nil, guard statement failed.")
+            return 0.0
+        }
+        return returnedDigit
+        
     }
     
     func populateUI() {
@@ -148,9 +150,9 @@ class InformationPageViewController: UIViewController {
             self.caloriesAmount = 0.0
         } else {
             
-            self.caloriesAmount = round(100 * (self.getDigits((self.foodItem?.weight)!) / self.self.getDigits((self.foodItem?.properties["energy"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["energy"]["amount"].stringValue)!)! ) / 100
+            self.caloriesAmount = round(100 * (self.getDigits(digitizedString: (self.foodItem?.weight)!) / self.self.getDigits(digitizedString: (self.foodItem?.properties["energy"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["energy"]["amount"].stringValue)!)! ) / 100
             
-            self.caloriesLabel.attributedText = self.caloriesLabel.attributedText?.attributedText(withString: " Total Calories: " + String(describing: self.caloriesAmount!) + " calories.", boldString: " Total Calories: ", font: UIFont.systemFont(ofSize: 17))
+            self.caloriesLabel.attributedText = self.caloriesLabel.attributedText?.attributedText(withString: " Total Calories: " + String(describing: self.caloriesAmount) + " calories.", boldString: " Total Calories: ", font: UIFont.systemFont(ofSize: 17))
         }
         
         
@@ -160,18 +162,18 @@ class InformationPageViewController: UIViewController {
             self.fatAmount = 0.0
         } else {
             
-            self.fatAmount = round(100 * (self.getDigits((self.foodItem?.weight)!) / self.getDigits((self.foodItem?.properties["fat"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["fat"]["amount"].stringValue)!)! ) / 100
+            self.fatAmount = round(100 * (self.getDigits(digitizedString: (self.foodItem?.weight)!) / self.getDigits(digitizedString: (self.foodItem?.properties["fat"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["fat"]["amount"].stringValue)!)! ) / 100
             
-            self.fatLabel.attributedText = self.fatLabel.attributedText?.attributedText(withString: " Total Fat: " + String(describing: self.fatAmount!) + " grams.", boldString: " Total Fat: ", font: UIFont.systemFont(ofSize: 17))
+            self.fatLabel.attributedText = self.fatLabel.attributedText?.attributedText(withString: " Total Fat: " + String(describing: self.fatAmount) + " grams.", boldString: " Total Fat: ", font: UIFont.systemFont(ofSize: 17))
         }
         //SATURATED FAT
         if self.foodItem?.properties["satfat"] == JSON.null {
             self.satFatLabel.attributedText = self.satFatLabel.attributedText?.attributedText(withString: " Total Saturated Fat: 0.0g", boldString: " Total Saturated Fat: ", font: UIFont.systemFont(ofSize: 17))
             self.satFatAmount = 0.0
         } else {
-            self.satFatAmount = round(100 * (self.getDigits((self.foodItem?.weight)!) / self.getDigits((self.foodItem?.properties["satfat"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["satfat"]["amount"].stringValue)!)! ) / 100
+            self.satFatAmount = round(100 * (self.getDigits(digitizedString: (self.foodItem?.weight)!) / self.getDigits(digitizedString: (self.foodItem?.properties["satfat"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["satfat"]["amount"].stringValue)!)! ) / 100
             
-            self.satFatLabel.attributedText = self.satFatLabel.attributedText?.attributedText(withString: " Total Saturated Fat: " + String(describing: self.satFatAmount!) + " grams.", boldString: " Total Saturated Fat: ", font: UIFont.systemFont(ofSize: 17))
+            self.satFatLabel.attributedText = self.satFatLabel.attributedText?.attributedText(withString: " Total Saturated Fat: " + String(describing: self.satFatAmount) + " grams.", boldString: " Total Saturated Fat: ", font: UIFont.systemFont(ofSize: 17))
         }
         
         //SODIUM
@@ -180,9 +182,9 @@ class InformationPageViewController: UIViewController {
             self.sodiumLabel.attributedText = self.sodiumLabel.attributedText?.attributedText(withString: " Total Sodium: 0.0g", boldString: " Total Sodium: ", font: UIFont.systemFont(ofSize: 17))
             self.SodiumAmount = 0.0
         } else {
-            self.SodiumAmount = round(100 * (self.getDigits((self.foodItem?.weight)!) / self.getDigits((self.foodItem?.properties["sodium"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["sodium"]["amount"].stringValue)!)! ) / 100
+            self.SodiumAmount = round(100 * (self.getDigits(digitizedString: (self.foodItem?.weight)!) / self.getDigits(digitizedString: (self.foodItem?.properties["sodium"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["sodium"]["amount"].stringValue)!)! ) / 100
             
-            self.sodiumLabel.attributedText = self.sodiumLabel.attributedText?.attributedText(withString: " Total Sodium: " + String(describing: self.SodiumAmount!) + " grams.", boldString: " Total Sodium: ", font: UIFont.systemFont(ofSize: 17))
+            self.sodiumLabel.attributedText = self.sodiumLabel.attributedText?.attributedText(withString: " Total Sodium: " + String(describing: self.SodiumAmount) + " grams.", boldString: " Total Sodium: ", font: UIFont.systemFont(ofSize: 17))
         }
         
         //SUGAR
@@ -190,9 +192,9 @@ class InformationPageViewController: UIViewController {
             self.sugarLabel.attributedText = self.sugarLabel.attributedText?.attributedText(withString: " Total Sugar: 0.0g", boldString: " Total Sugar: ", font: UIFont.systemFont(ofSize: 17))
             self.sugarAmount = 0.0
         } else {
-            self.sugarAmount = round(100 * (self.getDigits((self.foodItem?.weight)!) / self.getDigits((self.foodItem?.properties["sugar"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["sugar"]["amount"].stringValue)!)! ) / 100
+            self.sugarAmount = round(100 * (self.getDigits(digitizedString: (self.foodItem?.weight)!) / self.getDigits(digitizedString: (self.foodItem?.properties["sugar"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["sugar"]["amount"].stringValue)!)! ) / 100
             
-            self.sugarLabel.attributedText = self.sugarLabel.attributedText?.attributedText(withString: " Total Sugar: " + String(describing: self.sugarAmount!) + " grams.", boldString: " Total Sugar: ", font: UIFont.systemFont(ofSize: 17))
+            self.sugarLabel.attributedText = self.sugarLabel.attributedText?.attributedText(withString: " Total Sugar: " + String(describing: self.sugarAmount) + " grams.", boldString: " Total Sugar: ", font: UIFont.systemFont(ofSize: 17))
         }
         
         //CARBS
@@ -200,9 +202,9 @@ class InformationPageViewController: UIViewController {
             self.carbsLabel.attributedText = self.carbsLabel.attributedText?.attributedText(withString: " Total Carbs: 0.0g", boldString: " Total Carbs: ", font: UIFont.systemFont(ofSize: 17))
             self.carbsAmount = 0.0
         } else {
-            self.carbsAmount = round(100 * (self.getDigits((self.foodItem?.weight)!) / self.getDigits((self.foodItem?.properties["carbs"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["carbs"]["amount"].stringValue)!)! ) / 100
+            self.carbsAmount = round(100 * (self.getDigits(digitizedString: (self.foodItem?.weight)!) / self.getDigits(digitizedString: (self.foodItem?.properties["carbs"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["carbs"]["amount"].stringValue)!)! ) / 100
             
-            self.carbsLabel.attributedText = self.carbsLabel.attributedText?.attributedText(withString: " Total Carbs: " + String(describing: self.carbsAmount!) + " grams.", boldString: " Total Carbs: ", font: UIFont.systemFont(ofSize: 17))
+            self.carbsLabel.attributedText = self.carbsLabel.attributedText?.attributedText(withString: " Total Carbs: " + String(describing: self.carbsAmount) + " grams.", boldString: " Total Carbs: ", font: UIFont.systemFont(ofSize: 17))
         }
         
         //PROTEIN
@@ -211,9 +213,9 @@ class InformationPageViewController: UIViewController {
             self.proteinLabel.attributedText = self.proteinLabel.attributedText?.attributedText(withString: " Total Protein: 0.0g", boldString: " Total Protein: ", font: UIFont.systemFont(ofSize: 17))
             self.proteinAmount = 0.0
         } else {
-            self.proteinAmount = round(100 * (self.getDigits((self.foodItem?.weight)!) / self.getDigits((self.foodItem?.properties["protein"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["protein"]["amount"].stringValue)!)! ) / 100
+            self.proteinAmount = round(100 * (self.getDigits(digitizedString: (self.foodItem?.weight)!) / self.getDigits(digitizedString: (self.foodItem?.properties["protein"]["per"].stringValue)!)) * (Double)((self.foodItem?.properties["protein"]["amount"].stringValue)!)! ) / 100
             
-            self.proteinLabel.attributedText = self.carbsLabel.attributedText?.attributedText(withString: " Total Protein: " + String(describing: self.proteinAmount!) + " grams.", boldString: " Total Protein: ", font: UIFont.systemFont(ofSize: 17))
+            self.proteinLabel.attributedText = self.carbsLabel.attributedText?.attributedText(withString: " Total Protein: " + String(describing: self.proteinAmount) + " grams.", boldString: " Total Protein: ", font: UIFont.systemFont(ofSize: 17))
         }
     }
     
