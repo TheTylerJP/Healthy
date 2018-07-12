@@ -97,7 +97,6 @@
 		AB873898204484E70033DC8E /* Kitchen Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				AB87389D204484E70033DC8E /* Main.storyboard */,
 				6596F4A520EB956B0068AB6F /* ViewControllers */,
 				6596F4A820EB98C20068AB6F /* Models */,
 				AB8738A3204484E70033DC8E /* Assets.xcassets */,
@@ -105,6 +104,7 @@
 				AB873899204484E70033DC8E /* AppDelegate.swift */,
 				AB38C988206818F000C249C4 /* HealthKitSetupAssistant.swift */,
 				AB8738A5204484E70033DC8E /* LaunchScreen.storyboard */,
+				AB87389D204484E70033DC8E /* Main.storyboard */,
 				AB8738A8204484E70033DC8E /* Info.plist */,
 			);
 			path = "Kitchen Calculator";
