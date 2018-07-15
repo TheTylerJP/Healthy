@@ -12,7 +12,7 @@ struct NutritionAPI {
     fileprivate static let apiKey : String = "bAABebg8UDkbCsGXka4F"
     fileprivate static let apiURL  : String = "http://supermarketownbrandguide.co.uk/api/newfeed.php"
     
-    enum SearchParameters : String {
+    private enum SearchParameters : String {
         case search
         case barcode
     }
@@ -20,7 +20,7 @@ struct NutritionAPI {
     
     
     //Function to create URL for grabbing a single food item
-    public static func foodItemURL(barcode : String) -> URL {
+      static func foodItemURL(barcode : String) -> URL {
         var components = URLComponents(string: apiURL)!
         var queryItems = [URLQueryItem]()
         
@@ -40,7 +40,7 @@ struct NutritionAPI {
     }
     
     //Function to create uRL for creating a list of items.
-    public static func searchItemsURL(searchString  : String, page : String = "0") -> URL {
+    private static func searchItemsURL(searchString  : String, page : String = "0") -> URL {
         var components = URLComponents(string: apiURL)!
         var queryItems = [URLQueryItem]()
         

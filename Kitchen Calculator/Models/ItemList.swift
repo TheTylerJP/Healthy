@@ -13,12 +13,12 @@ import Foundation
 public class ItemList {
     
     let categoryName : String
-    var items : [Food] = []
+    var items  = [Food]()
     var itemPage : Int
     let query : String
     
     
-    init?(json : JSON) {
+    init?(jsonObject json : JSON) {
         self.categoryName = json["categoryname"].stringValue
         self.itemPage = json["itempage"].intValue
         self.query = json["query"].stringValue
@@ -36,7 +36,5 @@ public class ItemList {
             }
             items.append(food)
         }
-        
-        
     }
 }
