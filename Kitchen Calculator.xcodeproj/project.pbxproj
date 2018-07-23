@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6596F4AC20EBA85B0068AB6F /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6596F4AB20EBA85B0068AB6F /* ItemList.swift */; };
 		6596F4AE20EBBBFC0068AB6F /* NutritionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6596F4AD20EBBBFC0068AB6F /* NutritionAPI.swift */; };
+		65AE929B21068C0200E8FDDB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AE929A21068C0200E8FDDB /* SearchViewController.swift */; };
 		77DC203E859A8BD9EC057CB3 /* Pods_Kitchen_Calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF622703CFB3A7D5D120725B /* Pods_Kitchen_Calculator.framework */; };
 		AB23C0752051D96B00D3374E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23C0742051D96B00D3374E /* InitialViewController.swift */; };
 		AB38C987206817E700C249C4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB38C986206817E700C249C4 /* HealthKit.framework */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		6596F4AB20EBA85B0068AB6F /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6596F4AD20EBBBFC0068AB6F /* NutritionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionAPI.swift; sourceTree = "<group>"; };
+		65AE929A21068C0200E8FDDB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		AB23C0742051D96B00D3374E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		AB38C985206817E700C249C4 /* Kitchen Calculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Kitchen Calculator.entitlements"; sourceTree = "<group>"; };
 		AB38C986206817E700C249C4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -62,6 +64,7 @@
 				AB23C0742051D96B00D3374E /* InitialViewController.swift */,
 				AB41726D20505263000E7790 /* InformationPageViewController.swift */,
 				AB38C98A20681FCF00C249C4 /* SaveHealthDataViewController.swift */,
+				65AE929A21068C0200E8FDDB /* SearchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				AB38C98B20681FCF00C249C4 /* SaveHealthDataViewController.swift in Sources */,
 				AB23C0752051D96B00D3374E /* InitialViewController.swift in Sources */,
 				AB41726A204EE7FA000E7790 /* Food.swift in Sources */,
+				65AE929B21068C0200E8FDDB /* SearchViewController.swift in Sources */,
 				6596F4AE20EBBBFC0068AB6F /* NutritionAPI.swift in Sources */,
 				6596F4AC20EBA85B0068AB6F /* ItemList.swift in Sources */,
 				AB38C989206818F000C249C4 /* HealthKitSetupAssistant.swift in Sources */,

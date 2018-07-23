@@ -271,40 +271,47 @@
             </objects>
             <point key="canvasLocation" x="-430" y="122"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="vBD-63-EaS">
             <objects>
-                <viewController id="bII-LW-CoB" sceneMemberID="viewController">
+                <viewController id="bII-LW-CoB" customClass="SearchViewController" customModule="Kitchen_Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Fo-yf-JNC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x4Z-R2-0yq">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y24-Iw-vso">
+                                <rect key="frame" x="163" y="207" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchButtonClicked:" destination="bII-LW-CoB" eventType="touchUpInside" id="nhM-e8-hsj"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Test" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="g4d-Eg-QWG">
+                                <rect key="frame" x="43" y="260" width="298" height="351"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qBM-eE-G9K">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qBM-eE-G9K" id="zC7-4u-wT4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0mK-o8-xkH">
+                                <rect key="frame" x="80" y="145" width="215" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.72698753238341962" green="0.72698753238341962" blue="0.72698753238341962" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="x4Z-R2-0yq" firstAttribute="bottom" secondItem="HOi-r3-r8W" secondAttribute="bottom" id="5OI-wU-pMT"/>
-                            <constraint firstAttribute="trailing" secondItem="x4Z-R2-0yq" secondAttribute="trailing" id="7Sq-ew-axl"/>
-                            <constraint firstItem="x4Z-R2-0yq" firstAttribute="leading" secondItem="5Fo-yf-JNC" secondAttribute="leading" id="8NT-Ch-xIM"/>
-                            <constraint firstItem="x4Z-R2-0yq" firstAttribute="top" secondItem="5Fo-yf-JNC" secondAttribute="top" id="bfU-eQ-a9Z"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HOi-r3-r8W"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="Bdh-3Z-7co"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchField" destination="0mK-o8-xkH" id="gvI-FJ-ZDw"/>
+                        <outlet property="textBox" destination="g4d-Eg-QWG" id="kbg-2t-jdx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ag1-tQ-AVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

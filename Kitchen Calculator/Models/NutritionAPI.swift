@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+import Alamofire
 
 struct NutritionAPI {
     fileprivate static let apiKey : String = "bAABebg8UDkbCsGXka4F"
@@ -20,7 +22,7 @@ struct NutritionAPI {
     
     
     //Function to create URL for grabbing a single food item
-      static func foodItemURL(barcode : String) -> URL {
+    static func foodItemURL(barcode : String) -> URL {
         var components = URLComponents(string: apiURL)!
         var queryItems = [URLQueryItem]()
         
@@ -40,12 +42,12 @@ struct NutritionAPI {
     }
     
     //Function to create uRL for creating a list of items.
-    private static func searchItemsURL(searchString  : String, page : String = "0") -> URL {
+    private static func searchItemsURL(itemToSearch str: String, page : String = "0") -> URL {
         var components = URLComponents(string: apiURL)!
         var queryItems = [URLQueryItem]()
         
         let params: [String : String] = ["json" : SearchParameters.search.rawValue,
-                                         "q" : searchString,
+                                         "q" : str,
                                          "page" : page,
                                          "apikey" : apiKey
         ]
@@ -58,5 +60,42 @@ struct NutritionAPI {
         print("URL: \(String(describing: components.url)) ")
         
         return components.url!
+    }
+    
+    static func searchItems(itemToSearch keyword: String, completion: @escaping (ItemList?, Error?) ->()) {
+        
+        let url = NutritionAPI.searchItemsURL(itemToSearch: keyword)
+        
+        request(url).responseJSON {(response) in
+            
+            if let data = response.data {
+                if let itemList = ItemList(jsonObject: JSON(data)) {
+                    completion(itemList, nil)
+                } else {
+                    completion(nil, FoodError.invalidJSON)
+                }
+            }
+            
+        }
+        
+        
+    }
+    
+    static func getFoodItem (barcode:String, completion: @escaping (Food?, Error?) -> ()) {
+        
+        let url = NutritionAPI.foodItemURL(barcode: barcode)
+        
+        
+        request(url).responseJSON { (response) in
+            if let data = response.data {
+                
+                if let food = Food(json: JSON(data)){
+                    completion(food, nil)
+                } else {
+                    
+                    completion(nil, FoodError.invalidJSON)
+                }
+            }
+        }
     }
 }

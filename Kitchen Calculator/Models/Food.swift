@@ -41,24 +41,7 @@ class Food{
     }
     
 
-    static func getFoodItem (barcode:String, completion: @escaping (Food?, Error?) -> ()) {
-        
-        let url : URL = NutritionAPI.foodItemURL(barcode: barcode)
-        
 
-        request(url).responseJSON { (response) in
-            if let data = response.data {
-                
-                if let food = Food(json: JSON(data)){
-                    print(food)
-                    completion(food, nil)
-                } else {
-                    
-                    completion(nil, FoodError.invalidJSON)
-                }
-            }
-        }
-    }
         
     
     

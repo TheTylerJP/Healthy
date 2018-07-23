@@ -46,7 +46,7 @@ class InformationPageViewController: UIViewController {
                 return
             }
             DispatchQueue.global(qos: .userInitiated).async{
-                Food.getFoodItem(barcode: barcode) { (foodItem, error) in
+                NutritionAPI.getFoodItem(barcode: barcode) { (foodItem, error) in
                     self.foodItem = foodItem
                 }
                 
@@ -143,6 +143,7 @@ class InformationPageViewController: UIViewController {
         
         self.titleLabel.text = (self.foodItem?.title)!
         self.titleLabel.numberOfLines = 0
+        
         
         //CALORIES
         if self.foodItem?.properties["energy"] == JSON.null {
