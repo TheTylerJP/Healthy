@@ -12,20 +12,20 @@ import Alamofire
 
 
 
-public enum FoodError: Error {
+public enum foodError: Error {
     case invalidJSON
 }
 
 
 
-class Food{
+struct Food{
     let productId:String
     let title:String
     let description:String
     let imageURL:String
     let price:String
     
-    let properties:JSON
+    let nutrients: Nutrients
     let healthnotes:String
     let weight:String
     
@@ -35,10 +35,12 @@ class Food{
         self.description = json["description"].stringValue
         self.imageURL = json["image"].stringValue
         self.price = json["price"].stringValue
-        self.properties = json["properties"]
+        self.nutrients = Nutrients(withData: json["properties"])
         self.healthnotes = json["healthnotes"].stringValue
         self.weight = json["weight"].stringValue
     }
+    
+    
     
 
 

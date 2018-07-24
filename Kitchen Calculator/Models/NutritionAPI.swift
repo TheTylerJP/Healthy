@@ -72,7 +72,7 @@ struct NutritionAPI {
                 if let itemList = ItemList(jsonObject: JSON(data)) {
                     completion(itemList, nil)
                 } else {
-                    completion(nil, FoodError.invalidJSON)
+                    completion(nil, foodError.invalidJSON)
                 }
             }
             
@@ -81,7 +81,7 @@ struct NutritionAPI {
         
     }
     
-    static func getFoodItem (barcode:String, completion: @escaping (Food?, Error?) -> ()) {
+    static func getFoodItem (withBarcode barcode:String, completion: @escaping (Food?, Error?) -> ()) {
         
         let url = NutritionAPI.foodItemURL(barcode: barcode)
         
@@ -93,7 +93,7 @@ struct NutritionAPI {
                     completion(food, nil)
                 } else {
                     
-                    completion(nil, FoodError.invalidJSON)
+                    completion(nil, foodError.invalidJSON)
                 }
             }
         }

@@ -10,6 +10,7 @@
 		6596F4AC20EBA85B0068AB6F /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6596F4AB20EBA85B0068AB6F /* ItemList.swift */; };
 		6596F4AE20EBBBFC0068AB6F /* NutritionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6596F4AD20EBBBFC0068AB6F /* NutritionAPI.swift */; };
 		65AE929B21068C0200E8FDDB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AE929A21068C0200E8FDDB /* SearchViewController.swift */; };
+		65AF81F32107D00B00280332 /* Nutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF81F22107D00B00280332 /* Nutrients.swift */; };
 		77DC203E859A8BD9EC057CB3 /* Pods_Kitchen_Calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF622703CFB3A7D5D120725B /* Pods_Kitchen_Calculator.framework */; };
 		AB23C0752051D96B00D3374E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23C0742051D96B00D3374E /* InitialViewController.swift */; };
 		AB38C987206817E700C249C4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB38C986206817E700C249C4 /* HealthKit.framework */; };
@@ -27,6 +28,7 @@
 		6596F4AB20EBA85B0068AB6F /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6596F4AD20EBBBFC0068AB6F /* NutritionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionAPI.swift; sourceTree = "<group>"; };
 		65AE929A21068C0200E8FDDB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		65AF81F22107D00B00280332 /* Nutrients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrients.swift; sourceTree = "<group>"; };
 		AB23C0742051D96B00D3374E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		AB38C985206817E700C249C4 /* Kitchen Calculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Kitchen Calculator.entitlements"; sourceTree = "<group>"; };
 		AB38C986206817E700C249C4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -73,10 +75,18 @@
 			isa = PBXGroup;
 			children = (
 				AB417269204EE7FA000E7790 /* Food.swift */,
+				65AF81F22107D00B00280332 /* Nutrients.swift */,
 				6596F4AD20EBBBFC0068AB6F /* NutritionAPI.swift */,
 				6596F4AB20EBA85B0068AB6F /* ItemList.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		65AF81F12107CF1000280332 /* Style Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Style Utilities";
 			sourceTree = "<group>";
 		};
 		AB87388D204484E70033DC8E = {
@@ -100,6 +110,7 @@
 		AB873898204484E70033DC8E /* Kitchen Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				65AF81F12107CF1000280332 /* Style Utilities */,
 				6596F4A520EB956B0068AB6F /* ViewControllers */,
 				6596F4A820EB98C20068AB6F /* Models */,
 				AB8738A3204484E70033DC8E /* Assets.xcassets */,
@@ -263,6 +274,7 @@
 				6596F4AC20EBA85B0068AB6F /* ItemList.swift in Sources */,
 				AB38C989206818F000C249C4 /* HealthKitSetupAssistant.swift in Sources */,
 				AB87389A204484E70033DC8E /* AppDelegate.swift in Sources */,
+				65AF81F32107D00B00280332 /* Nutrients.swift in Sources */,
 				AB41726E20505263000E7790 /* InformationPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
