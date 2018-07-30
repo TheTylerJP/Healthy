@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 import Foundation
 
-public class ItemList {
+class ItemList {
     
     let categoryName : String
     var items  = [Food]()

@@ -58,13 +58,13 @@ public final class MessageViewController: UIViewController {
 
    - Parameter style: The current blur style.
    */
-  private func animate(blurStyle: UIBlurEffectStyle) {
+  private func animate(blurStyle: UIBlurEffect.Style) {
     guard status.state == .processing else { return }
 
     UIView.animate(
       withDuration: 2.0,
       delay: 0.5,
-      options: [.beginFromCurrentState],
+      options: [UIView.AnimationOptions.beginFromCurrentState],
       animations: ({ [weak self] in
         self?.blurView.effect = UIBlurEffect(style: blurStyle)
       }),
@@ -89,7 +89,7 @@ public final class MessageViewController: UIViewController {
       delay: 0.5,
       usingSpringWithDamping: 0.6,
       initialSpringVelocity: 1.0,
-      options: [.beginFromCurrentState],
+      options: [UIView.AnimationOptions.beginFromCurrentState],
       animations: ({ [weak self] in
         self?.borderView.transform = CGAffineTransform(rotationAngle: borderViewAngle)
       }),

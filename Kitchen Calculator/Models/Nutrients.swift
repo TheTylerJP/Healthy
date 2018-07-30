@@ -64,13 +64,21 @@ struct Nutrients {
         }
         
     }
+   
+    mutating func addNutrients(withServingsMultiplier servings: Int) {
+       caloriesAmount       *= Double(servings)
+       fatAmount            *= Double(servings)
+       satFatAmount         *= Double(servings)
+       SodiumAmount         *= Double(servings)
+       sugarAmount          *= Double(servings)
+       carbsAmount          *= Double(servings)
+       proteinAmount        *= Double(servings)
+
+    }
     
 
     
 }
-
-
-
 
 /*=============================================================================*/
 extension JSON {

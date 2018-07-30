@@ -40,34 +40,20 @@ class InformationPageViewController: UIViewController {
             DispatchQueue.global(qos: .userInitiated).async{
                 NutritionAPI.getFoodItem(withBarcode: barcode) { (foodItem, error) in
                     if let food = foodItem {
-                        self.foodItem = food
+                            self.foodItem = food
+                        }
                     }
                 }
                 
             }
         }
-    }
     
     //perform UI changes
     var foodItem: Food? {
         didSet {
-            
-            request((foodItem?.imageURL)!, method: .get).responseImage { response in
-                
-                guard response.result.value != nil else {
-                    self.foodImage.image = UIImage(named: "Error")!
-                    self.titleLabel.text = "No product Information found."
-                    self.continueButton.isHidden = true
-                    print("No product found.")
-                    return
-                }
-                
-                
-                self.foodImage.image = response.result.value
+            DispatchQueue.main.async {
                 self.populateUI()
-                
-            }
-            
+            }  
         }
     }
     
@@ -96,7 +82,7 @@ class InformationPageViewController: UIViewController {
     
     @IBAction func continueButton(_ sender: Any) {
         
-       // performSegue(withIdentifier: "toScale", sender: self)
+        // performSegue(withIdentifier: "toScale", sender: self)
         
     }
     
@@ -110,7 +96,7 @@ class InformationPageViewController: UIViewController {
     
     
     
-
+    
     
     func populateUI() {
         
@@ -118,16 +104,15 @@ class InformationPageViewController: UIViewController {
         self.titleLabel.numberOfLines = 0
         
         if let food = foodItem {
-        caloriesLabel.text = String(food.nutrients.caloriesAmount)
-        
-        
-        
-        fatLabel.text = String(food.nutrients.fatAmount)
-        satFatLabel.text = String(food.nutrients.satFatAmount)
-        sodiumLabel.text = String(food.nutrients.SodiumAmount)
-        sugarLabel.text = String(food.nutrients.SodiumAmount)
-        carbsLabel.text = String(food.nutrients.SodiumAmount)
-        proteinLabel.text = String(food.nutrients.SodiumAmount)
+            caloriesLabel.text = String(food.nutrients.caloriesAmount)
+            fatLabel.text = String(food.nutrients.fatAmount)
+            satFatLabel.text = String(food.nutrients.satFatAmount)
+            sodiumLabel.text = String(food.nutrients.SodiumAmount)
+            sugarLabel.text = String(food.nutrients.SodiumAmount)
+            carbsLabel.text = String(food.nutrients.SodiumAmount)
+            proteinLabel.text = String(food.nutrients.SodiumAmount)
+            foodImage.image = foodItem?.image
+            
         }
     }
     
@@ -140,9 +125,9 @@ extension String {
     
     public func attributedText(withString string: String, boldString: String, font: UIFont) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: string,
-                                                         attributes: [NSAttributedStringKey.font: font])
-        let boldFontAttribute: [NSAttributedStringKey: Any] =
-                                [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: font.pointSize)]
+                                                         attributes: [NSAttributedString.Key.font: font])
+        let boldFontAttribute: [NSAttributedString.Key: Any] =
+            [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: font.pointSize)]
         let range = (string as NSString).range(of: boldString)
         attributedString.addAttributes(boldFontAttribute, range: range)
         return attributedString

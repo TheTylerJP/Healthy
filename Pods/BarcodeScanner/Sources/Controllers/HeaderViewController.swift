@@ -25,7 +25,7 @@ public final class HeaderViewController: UIViewController {
     super.viewDidLoad()
 
     navigationBar.delegate = self
-    closeButton.addTarget(self, action: #selector(handleCloseButtonTap), for: .touchUpInside)
+    closeButton.addTarget(self, action: #selector(handleCloseButtonTap), for: UIControl.Event.touchUpInside)
 
     view.addSubview(navigationBar)
     setupConstraints()
@@ -85,7 +85,7 @@ private extension HeaderViewController {
 
   func makeCloseButton() -> UIButton {
     let button = UIButton(type: .system)
-    button.setTitle(localizedString("BUTTON_CLOSE"), for: UIControlState())
+    button.setTitle(localizedString("BUTTON_CLOSE"), for: UIControl.State())
     button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     button.tintColor = .black
     return button

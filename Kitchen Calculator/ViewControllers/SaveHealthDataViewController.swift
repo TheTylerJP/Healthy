@@ -9,77 +9,27 @@
 import UIKit
 import HealthKit
 
-protocol nutritionalInformation {
-    var servings : Int {get set}
-    var calories : Double {get set}
-    var fat : Double {get set}
-    var satFat : Double {get set}
-    var sodium : Double {get set}
-    var sugar : Double {get set}
-    var carbs : Double {get set}
-    var protein : Double {get set}
-}
 
-class SaveHealthDataViewController: UIViewController, nutritionalInformation {
+
+class SaveHealthDataViewController: UIViewController{
     
 
     public let healthStore = HKHealthStore()
     
     @IBOutlet weak var saveButton: UIButton!
-    var percentMultiplier:Double? {
-        didSet {
-            if let multiplier = percentMultiplier {
-                calories *= multiplier
-                fat *= multiplier
-                satFat *= multiplier
-                sodium *= multiplier
-                sugar *= multiplier
-                carbs *= multiplier
-                protein *= multiplier
-            }
-        }
-    }
-    var weight:Double = 0.0
-    var calories:Double = 0.0
-    var fat:Double = 0.0
-    var satFat:Double = 0.0
-    var sodium:Double = 0.0
-    var sugar:Double = 0.0
-    var carbs:Double = 0.0
-    var protein:Double = 0.0
-    var servings: Int = 0
     
-    //TODO: Remove weight
-    var iPhoneWeight:Double? {
-        didSet {
-            if let iPhoneWeight = iPhoneWeight {
-                percentMultiplier = iPhoneWeight / weight
-                print("Weight: " + String(weight))
-                print("IPhone Weight: " + String(iPhoneWeight))
-                print(percentMultiplier ?? "Percent multiplier: 1")
-            } else {
-                percentMultiplier = 1.0
-            }
-        }
-    }
+    var foodItem = [Food]()
     
     
-    //Labels
-    @IBOutlet weak var caloriesLabel: UILabel!
-    @IBOutlet weak var fatLabel: UILabel!
-    @IBOutlet weak var satFatLabel: UILabel!
-    @IBOutlet weak var sodiumLabel: UILabel!
-    @IBOutlet weak var sugarLabel: UILabel!
-    @IBOutlet weak var carbsLabel: UILabel!
-    @IBOutlet weak var proteinLabel: UILabel!
     
     
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        styleButtons()
+
         
         if HKHealthStore.isHealthDataAvailable() {
             print("Yes, HealthKit is Available")
@@ -96,12 +46,9 @@ class SaveHealthDataViewController: UIViewController, nutritionalInformation {
     
     
     
-    
-    @IBAction func saveToHealthKit(_ sender: Any) {
-        writeToKit()
-    }
-    
 
+
+    /*
     func writeToKit() {
         let date = Date()
         let caloriesSample = HKQuantitySample(type: HKSampleType.quantityType(forIdentifier: .dietaryEnergyConsumed)!, quantity: HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: self.calories), start: date, end: date)
@@ -128,7 +75,7 @@ class SaveHealthDataViewController: UIViewController, nutritionalInformation {
                 print("success: \(success)")
             }
         }
-    }
+    }*/
     
     
     

@@ -66,7 +66,7 @@ public final class CameraViewController: UIViewController {
         captureDevice.unlockForConfiguration()
       } catch {}
 
-      flashButton.setImage(torchMode.image, for: UIControlState())
+      flashButton.setImage(torchMode.image, for: UIControl.State())
     }
   }
 
@@ -157,23 +157,23 @@ public final class CameraViewController: UIViewController {
     flashButton.addTarget(
       self,
       action: #selector(handleFlashButtonTap),
-      for: .touchUpInside
+      for: UIControl.Event.touchUpInside
     )
     settingsButton.addTarget(
       self,
       action: #selector(handleSettingsButtonTap),
-      for: .touchUpInside
+      for: UIControl.Event.touchUpInside
     )
     cameraButton.addTarget(
       self,
       action: #selector(handleCameraButtonTap),
-      for: .touchUpInside
+      for: UIControl.Event.touchUpInside
     )
 
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(appWillEnterForeground),
-      name: NSNotification.Name.UIApplicationWillEnterForeground,
+      name: UIApplication.willEnterForegroundNotification,
       object: nil
     )
   }
@@ -291,7 +291,7 @@ public final class CameraViewController: UIViewController {
     UIView.animate(
       withDuration: 1.0,
       delay: 0,
-      options: [.repeat, .autoreverse, .beginFromCurrentState],
+      options: [UIView.AnimationOptions.repeat, UIView.AnimationOptions.autoreverse, UIView.AnimationOptions.beginFromCurrentState],
       animations: ({ [weak self] in
         self?.view.layoutIfNeeded()
       }),
@@ -413,16 +413,16 @@ private extension CameraViewController {
     let button = UIButton(type: .system)
     let title = NSAttributedString(
       string: localizedString("BUTTON_SETTINGS"),
-      attributes: [.font: UIFont.boldSystemFont(ofSize: 17), .foregroundColor: UIColor.white]
+      attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.white]
     )
-    button.setAttributedTitle(title, for: UIControlState())
+    button.setAttributedTitle(title, for: UIControl.State())
     button.sizeToFit()
     return button
   }
 
   func makeCameraButton() -> UIButton {
     let button = UIButton(type: .custom)
-    button.setImage(imageNamed("cameraRotate"), for: UIControlState())
+    button.setImage(imageNamed("cameraRotate"), for: UIControl.State())
     button.isHidden = !showsCameraButton
     return button
   }

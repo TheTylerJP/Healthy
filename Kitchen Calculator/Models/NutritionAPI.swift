@@ -66,9 +66,12 @@ struct NutritionAPI {
         
         let url = NutritionAPI.searchItemsURL(itemToSearch: keyword)
         
-        request(url).responseJSON {(response) in
+        
+        request(url).responseJSON {response in
             
+            //Acquire list of food items data
             if let data = response.data {
+                //Construct the object
                 if let itemList = ItemList(jsonObject: JSON(data)) {
                     completion(itemList, nil)
                 } else {
@@ -87,8 +90,11 @@ struct NutritionAPI {
         
         
         request(url).responseJSON { (response) in
+            
+            //Acquire the JSON data.
             if let data = response.data {
                 
+                //Construct food object from the data.
                 if let food = Food(json: JSON(data)){
                     completion(food, nil)
                 } else {
