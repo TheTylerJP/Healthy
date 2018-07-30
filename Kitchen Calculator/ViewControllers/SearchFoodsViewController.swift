@@ -72,8 +72,12 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
         } else {
             foodItem = list.items[indexPath.row]
         }
-        cell.textLabel!.text = foodItem.title
-        cell.imageView?.image = foodItem.image
+        
+        DispatchQueue.main.async {
+            cell.textLabel!.text = foodItem.title
+            cell.imageView?.image = foodItem.image
+        }
+        
         return cell
     }
     
