@@ -18,7 +18,10 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
     var listOfFoods: ItemList? {
         didSet {
             print("list of food set")
-            foodItemsTableView.reloadData()
+            DispatchQueue.main.async {
+                self.foodItemsTableView.reloadData()
+            }
+            
         }
     }
     
@@ -38,11 +41,13 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
     
     
     
+    
+    
+    
     override func viewDidLoad() {
         
         print("viewDidLoad")
         super.viewDidLoad()
-        
         optimizeSearchBar()
         
         // Do any additional setup after loading the view.
