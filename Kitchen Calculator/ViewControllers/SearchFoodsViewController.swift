@@ -130,6 +130,9 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
         searchController.searchBar.placeholder = "Search Foods"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        foodItemsTableView.delegate = self
+        searchController.searchBar.delegate = self
+        foodItemsTableView.dataSource = self
     }
     
 }

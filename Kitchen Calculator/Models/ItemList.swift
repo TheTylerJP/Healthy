@@ -22,7 +22,6 @@ class ItemList {
         self.categoryName = json["categoryname"].stringValue
         self.itemPage = json["itempage"].intValue
         self.query = json["query"].stringValue
-        print(json["items"])
         
         guard json["items"] != JSON.null else {
             print("json[items] is null")
