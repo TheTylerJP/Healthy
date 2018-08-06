@@ -13,17 +13,18 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
     var filteredFoods = [Food]()
     
     @IBOutlet weak var foodItemsTableView: UITableView!
-    
-    let searchController = UISearchController(searchResultsController: nil)
     var listOfFoods: ItemList? {
         didSet {
-            print("list of food set")
+
             DispatchQueue.main.async {
                 self.foodItemsTableView.reloadData()
             }
-            
         }
     }
+
+
+    let searchController = UISearchController(searchResultsController: nil)
+
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchController.searchBar.text else {
@@ -37,6 +38,8 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
                 }
             })
         }
+        //Dismiss the search button.
+        searchController.isActive = false
     }
     
     
@@ -45,16 +48,16 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
     
     
     override func viewDidLoad() {
-        
-        print("viewDidLoad")
+
         super.viewDidLoad()
         optimizeSearchBar()
         
         // Do any additional setup after loading the view.
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("table view that returns int")
+
         guard let list = listOfFoods else {
             return 0
         }
@@ -65,42 +68,63 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        print("table view that returns cell")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "foodItemCell", for: indexPath)
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "foodItemCell", for: indexPath) as! FoodCell
         guard let list = listOfFoods else {
             return cell
         }
         let foodItem: Food
         if isFiltering() {
-             foodItem = filteredFoods[indexPath.row]
+            foodItem = filteredFoods[indexPath.row]
         } else {
             foodItem = list.items[indexPath.row]
         }
-        
-        DispatchQueue.main.async {
-            cell.textLabel!.text = foodItem.title
-            cell.imageView?.image = foodItem.image
-        }
+
+
+        cell.foodImage.image = foodItem.image
+        cell.foodLabel.text = foodItem.title
+
         
         return cell
     }
     
     func isFiltering() -> Bool {
-        print("isfiltered")
+
         return searchController.isActive && !searchBarIsEmpty()
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toFoodInformation", sender: self.foodItemsTableView.cellForRow(at: indexPath))
+
+    }
+
     
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as? UITableViewCell
+        let foodIndex = foodItemsTableView.indexPath(for: cell!)?.row
+
+        let preparedFood = isFiltering() ? filteredFoods[foodIndex!] : listOfFoods?.items[foodIndex!]
+        print(preparedFood?.title)
+
+        if segue.identifier == "toFoodInformation" {
+            let destination = segue.destination as? FoodItemViewController
+            destination?.food = preparedFood
+
+        }
+
+
+
+
+
+
+    }
+
+
     func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
         return searchController.searchBar.text?.isEmpty ?? true

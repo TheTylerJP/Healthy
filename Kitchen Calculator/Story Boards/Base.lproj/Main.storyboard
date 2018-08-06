@@ -43,7 +43,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3Z-3P-ilT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944.79999999999995" y="17.733990147783253"/>
+            <point key="canvasLocation" x="505" y="368"/>
         </scene>
         <!--Item-->
         <scene sceneID="2yP-kD-9eX">
@@ -81,7 +81,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bUh-8A-YRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1486" y="1106"/>
+            <point key="canvasLocation" x="1937" y="741"/>
         </scene>
         <!--Search Foods View Controller-->
         <scene sceneID="fSG-Ur-Skw">
@@ -95,14 +95,14 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="675"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="foodItemCell" rowHeight="116" id="fBh-2M-AkT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="foodItemCell" rowHeight="116" id="fBh-2M-AkT" customClass="FoodCell" customModule="Kitchen_Calculator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fBh-2M-AkT" id="hOr-uD-Po9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="115.66666666666667"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="115.66666666666667"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gNM-ro-h7N">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gNM-ro-h7N">
                                                     <rect key="frame" x="7" y="11" width="90" height="90"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="90" id="Lza-lN-baQ"/>
@@ -110,7 +110,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ra-q0-vE6">
-                                                    <rect key="frame" x="105" y="10.999999999999998" width="255" height="20.333333333333329"/>
+                                                    <rect key="frame" x="105" y="10.999999999999998" width="222" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -125,6 +125,11 @@
                                                 <constraint firstItem="7ra-q0-vE6" firstAttribute="top" secondItem="hOr-uD-Po9" secondAttribute="top" constant="11" id="en2-ek-8ou"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="foodImage" destination="gNM-ro-h7N" id="MSn-qH-UdV"/>
+                                            <outlet property="foodLabel" destination="7ra-q0-vE6" id="uhy-8X-67B"/>
+                                            <segue destination="N2p-bt-IyZ" kind="show" identifier="toFoodInformation" trigger="accessoryAction" id="PHS-Ef-X1R"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -145,7 +150,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R2C-7b-auE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2325.5" y="1106"/>
+            <point key="canvasLocation" x="2773.5999999999999" y="740.39408866995075"/>
+        </scene>
+        <!--Food Item View Controller-->
+        <scene sceneID="GtQ-UO-5od">
+            <objects>
+                <viewController id="N2p-bt-IyZ" customClass="FoodItemViewController" customModule="Kitchen_Calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9dl-Z2-k6S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You made it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMz-CW-XKT">
+                                <rect key="frame" x="131" y="152" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="DLb-7r-YvX"/>
+                    </view>
+                    <connections>
+                        <outlet property="testLabel" destination="SMz-CW-XKT" id="gS0-6l-AWB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cZM-Kr-vhA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2774" y="1609"/>
         </scene>
     </scenes>
 </document>

@@ -23,9 +23,6 @@ class InitialViewController: UIViewController {
         scanner.title = "Scan Barcode"
         present(scanner, animated: true, completion: nil)
     }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Home"

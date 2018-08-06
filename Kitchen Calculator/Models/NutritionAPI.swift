@@ -75,7 +75,7 @@ struct NutritionAPI {
                 if let itemList = ItemList(jsonObject: JSON(data)) {
                     completion(itemList, nil)
                 } else {
-                    completion(nil, foodError.invalidJSON)
+                    completion(nil, FoodError.invalidJSON)
                 }
             }
             
@@ -99,7 +99,7 @@ struct NutritionAPI {
                     completion(food, nil)
                 } else {
                     
-                    completion(nil, foodError.invalidJSON)
+                    completion(nil, FoodError.invalidJSON)
                 }
             }
         }

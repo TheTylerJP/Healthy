@@ -12,12 +12,11 @@ import Foundation
 
 class ItemList {
     
-    let categoryName : String
+    let categoryName: String
     var items  = [Food]()
-    var itemPage : Int
-    let query : String
-    
-    
+    var itemPage: Int
+    let query: String
+
     init?(jsonObject json : JSON) {
         self.categoryName = json["categoryname"].stringValue
         self.itemPage = json["itempage"].intValue

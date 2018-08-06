@@ -107,10 +107,10 @@ class InformationPageViewController: UIViewController {
             caloriesLabel.text = String(food.nutrients.caloriesAmount)
             fatLabel.text = String(food.nutrients.fatAmount)
             satFatLabel.text = String(food.nutrients.satFatAmount)
-            sodiumLabel.text = String(food.nutrients.SodiumAmount)
-            sugarLabel.text = String(food.nutrients.SodiumAmount)
-            carbsLabel.text = String(food.nutrients.SodiumAmount)
-            proteinLabel.text = String(food.nutrients.SodiumAmount)
+            sodiumLabel.text = String(food.nutrients.sodiumAmount)
+            sugarLabel.text = String(food.nutrients.sodiumAmount)
+            carbsLabel.text = String(food.nutrients.sodiumAmount)
+            proteinLabel.text = String(food.nutrients.sodiumAmount)
             foodImage.image = foodItem?.image
             
         }
