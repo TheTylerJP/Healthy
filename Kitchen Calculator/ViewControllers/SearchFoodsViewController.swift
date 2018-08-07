@@ -80,55 +80,50 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
             foodItem = list.items[indexPath.row]
         }
 
-
-        cell.foodImage.image = foodItem.image
-        cell.foodLabel.text = foodItem.title
-
-        
+        DispatchQueue.main.async {
+            cell.foodImage.image = foodItem.image
+            cell.foodLabel.text = foodItem.title
+        }
         return cell
     }
     
+
+
+    // MARK: - Navigation
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("table view called")
+        performSegue(withIdentifier: "toFoodInformation", sender: self)
+
+
+    }
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = self.foodItemsTableView.indexPathForSelectedRow!
+        //Checks to see if the rows are being filtered and chooses which array to pull the food from.
+        guard let preparedFood = isFiltering() ? filteredFoods[indexPath.row] : listOfFoods?.items[indexPath.row] else {
+            print("preparedFood failed to init")
+            return
+        }
+        if segue.identifier == "toFoodInformation" {
+            print("segue called")
+            let vc = segue.destination as! FoodItemViewController
+            vc.food = preparedFood
+            print(Thread.isMainThread)
+        }
+
+    }
+
+    //MARK - Search utilities functions
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+
     func isFiltering() -> Bool {
 
         return searchController.isActive && !searchBarIsEmpty()
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toFoodInformation", sender: self.foodItemsTableView.cellForRow(at: indexPath))
-
-    }
-
-    
-    
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as? UITableViewCell
-        let foodIndex = foodItemsTableView.indexPath(for: cell!)?.row
-
-        let preparedFood = isFiltering() ? filteredFoods[foodIndex!] : listOfFoods?.items[foodIndex!]
-        print(preparedFood?.title)
-
-        if segue.identifier == "toFoodInformation" {
-            let destination = segue.destination as? FoodItemViewController
-            destination?.food = preparedFood
-
-        }
-
-
-
-
-
-
-    }
-
-
-    func searchBarIsEmpty() -> Bool {
-        // Returns true if the text is empty or nil
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
     
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
@@ -145,8 +140,11 @@ class SearchFoodsViewController: UIViewController, UITableViewDataSource, UITabl
         if let SearchHealthNotesOfFoods = listOfFoods?.items.filter({$0.healthnotes.lowercased().contains(searchText.lowercased())}) {
             filteredFoods.append(contentsOf: SearchHealthNotesOfFoods)
         }
-        
-        foodItemsTableView.reloadData()
+
+        DispatchQueue.main.async {
+            self.foodItemsTableView.reloadData()
+        }
+
         
     }
     

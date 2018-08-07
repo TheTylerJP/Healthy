@@ -16,21 +16,7 @@ import Alamofire
 class InformationPageViewController: UIViewController {
     
     var counter:Int = 0
-    
-    @IBOutlet weak var foodImage: UIImageView!
-    @IBOutlet weak var caloriesLabel: UILabel!
-    @IBOutlet weak var fatLabel: UILabel!
-    @IBOutlet weak var satFatLabel: UILabel!
-    @IBOutlet weak var sodiumLabel: UILabel!
-    @IBOutlet weak var sugarLabel: UILabel!
-    @IBOutlet weak var carbsLabel: UILabel!
-    @IBOutlet weak var proteinLabel: UILabel!
-    
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var continueButton: UIButton!
-    
-    
+
     var barcode:String? {
         didSet{
             guard let barcode = barcode  else {
@@ -65,10 +51,7 @@ class InformationPageViewController: UIViewController {
         navigationItem.title = "Product Information"
         
         
-        
-        continueButton.layer.borderColor = UIColor.black.cgColor
-        continueButton.layer.borderWidth = 2.0
-        continueButton.layer.cornerRadius = 4.0
+
         
         
         // Do any additional setup after loading the view.
@@ -99,21 +82,7 @@ class InformationPageViewController: UIViewController {
     
     
     func populateUI() {
-        
-        self.titleLabel.text = foodItem?.title
-        self.titleLabel.numberOfLines = 0
-        
-        if let food = foodItem {
-            caloriesLabel.text = String(food.nutrients.caloriesAmount)
-            fatLabel.text = String(food.nutrients.fatAmount)
-            satFatLabel.text = String(food.nutrients.satFatAmount)
-            sodiumLabel.text = String(food.nutrients.sodiumAmount)
-            sugarLabel.text = String(food.nutrients.sodiumAmount)
-            carbsLabel.text = String(food.nutrients.sodiumAmount)
-            proteinLabel.text = String(food.nutrients.sodiumAmount)
-            foodImage.image = foodItem?.image
-            
-        }
+
     }
     
     

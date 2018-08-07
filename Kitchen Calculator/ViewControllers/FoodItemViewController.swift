@@ -1,4 +1,4 @@
-//
+	//
 //  FoodItemViewController.swift
 //  Kitchen Calculator
 //
@@ -9,20 +9,21 @@
 import UIKit
 
 class FoodItemViewController: UIViewController {
-
+    @IBOutlet weak var titleLabel: UILabel!
     var food: Food? {
         didSet {
             print(food?.title)
-            testLabel.text = food?.title
+
         }
     }
-    @IBOutlet weak var testLabel: UILabel!
+
+
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        titleLabel.text = food?.title ?? "no food item"
     }
     
 

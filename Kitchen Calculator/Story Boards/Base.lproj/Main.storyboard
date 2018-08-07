@@ -128,7 +128,7 @@
                                         <connections>
                                             <outlet property="foodImage" destination="gNM-ro-h7N" id="MSn-qH-UdV"/>
                                             <outlet property="foodLabel" destination="7ra-q0-vE6" id="uhy-8X-67B"/>
-                                            <segue destination="N2p-bt-IyZ" kind="show" identifier="toFoodInformation" trigger="accessoryAction" id="PHS-Ef-X1R"/>
+                                            <segue destination="Y04-X9-IBx" kind="show" identifier="toFoodInformation" trigger="accessoryAction" id="n2t-FC-RMx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -153,15 +153,15 @@
             <point key="canvasLocation" x="2773.5999999999999" y="740.39408866995075"/>
         </scene>
         <!--Food Item View Controller-->
-        <scene sceneID="GtQ-UO-5od">
+        <scene sceneID="gSG-1A-cI2">
             <objects>
-                <viewController id="N2p-bt-IyZ" customClass="FoodItemViewController" customModule="Kitchen_Calculator" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9dl-Z2-k6S">
+                <viewController id="Y04-X9-IBx" customClass="FoodItemViewController" customModule="Kitchen_Calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="33t-z5-gVO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You made it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMz-CW-XKT">
-                                <rect key="frame" x="131" y="152" width="90" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCd-AL-3SN">
+                                <rect key="frame" x="28" y="150" width="180" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -169,15 +169,15 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="DLb-7r-YvX"/>
+                        <viewLayoutGuide key="safeArea" id="QLm-vI-vF2"/>
                     </view>
                     <connections>
-                        <outlet property="testLabel" destination="SMz-CW-XKT" id="gS0-6l-AWB"/>
+                        <outlet property="titleLabel" destination="mCd-AL-3SN" id="ZSh-kP-gJe"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cZM-Kr-vhA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jac-Mn-4WC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2774" y="1609"/>
+            <point key="canvasLocation" x="3744.8000000000002" y="739.65517241379314"/>
         </scene>
     </scenes>
 </document>
