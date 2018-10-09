@@ -28,6 +28,8 @@ class InitialViewController: UIViewController {
         navigationItem.title = "Home"
         styleButtons()
         styleLabels()
+        
+        print("Hey Tommy! Thanks for letting me do this lol ==Tyler")
     }
     
     func styleButtons() {
